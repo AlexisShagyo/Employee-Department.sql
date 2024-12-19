@@ -1,3 +1,5 @@
+(TASK: Your company doesn't have a database with all the employee information yet. Create one according to the following criteria)
+
 Create Table employee
 (employee_id int,
 first_name varchar(50) NOT NULL,
@@ -16,6 +18,9 @@ Create Table department
 department char (50),
 division char (50)
 )
+
+
+(TASK: Remove the birth_date data as it won't be necessary for the company)
 
 Alter Table employee
 Drop Column birth_date
@@ -55,6 +60,9 @@ Insert Into department VALUES
 (4,'Website','IT'),
 (5,'Back Office','Administration')
 
+
+(TASK: Jack Franklin gets promoted to 'Senior SQL Analyst' and the salary raises to 7200)
+
 Update employee 
 SET job_position = 'Senior SQL Analyst'
 WHERE first_name = 'Jack' AND last_name = 'Franklin'
@@ -63,17 +71,29 @@ Update employee
 SET salary = 7200.00
 WHERE first_name = 'Jack' AND last_name = 'Franklin'
 
+
+(TASK: The responsible people decided to rename the job_position Customer Support to Customer Specialist)
+
 Update employee
 SET job_position = 'Customer Specialist'
 WHERE job_position = 'Customer Support'
+
+
+(TASK: All SQL Analysts including Senior SQL Analysts get a raise of 6%)
 
 UPDATE employee
 SET salary=salary*1.06
 WHERE job_position LIKE '%SQL Analyst'
 
+
+(TASK: What is the average salary of a SQL Analyst in the company (excluding Senior SQL Analyst)?)
+
 Select ROUND(AVG(salary),2) 
 From employee
 WHERE job_position = 'SQL Analyst'
+
+
+(TASK: What is the average salaries per division?)
 
 SELECT 
 division,
@@ -83,6 +103,9 @@ LEFT JOIN department AS d
 ON e.department_id=d.department_id
 GROUP BY division
 ORDER BY 2 
+
+
+(TASK: Select the following: employee_id, first_name, last_name, job_position, salary and return the average salary for every job_position. Round up the average to 2 decimals and order them by employee_id)
 
 Select employee_id, 
 first_name, 
@@ -94,9 +117,8 @@ AS ave_salary_position
 From employee
 Order by employee_id
 
-Select Count(first_name)
-From employee
-Where salary < ave_salary_position 
+
+(TASK: How many people are earning less than the Average Salary per Job Position?)
 
 Select COUNT(*) From ( 
 Select salary, ROUND(AVG(salary) 
