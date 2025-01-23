@@ -5,16 +5,16 @@
 
 Your company doesn't have a database with all the employee information yet. Create one according to the following criteria:
 | employee_id | first_name | last_name | job_position| salary | start_date | brith_date | store_id | deprtment_id | manager_id | 
-| ----------- | ---------- | --------- | ----------- | ------ | ---------- | -------- | ------------ | ---------- | ---------- |
+| ----------- | ---------- | --------- | ----------- | ------ | ---------- | -------- | ------------ | ---------- | ------ |
 
 Set up an additional table called departments in the following way:
 | department_id | department | division | 
 | ------------- | ---------- | -------- |
 ---
 
-### Task 1: Create Tables
+#### _Task 1: Create Tables_
 
-#### Employee Table:
+> #### Employee Table:
 ```sql
 CREATE TABLE employee (
     employee_id INT,
@@ -28,25 +28,27 @@ CREATE TABLE employee (
     department_id INT,
     manager_id INT );
 ```
-#### Department Table:
+> #### Department Table:
 ```sql
 CREATE TABLE department (
     department_id INT NOT NULL,
     department CHAR(50),
     division CHAR(50));
 ```
-
-### Task 2: Delete the birth_date column from employee table as it won't be needed 
-#### Employee Table: 
+-----
+#### _Task 2: Delete the birth_date column from employee table as it won't be needed_
+> #### Employee Table: 
 ```sql
 Alter Table employee
 Drop Column birth_date
 ```
-Result:
+`Result:`
 | employee_id | first_name | last_name | job_position| salary | start_date | store_id | deprtment_id | manager_id | 
 | ----------- | ---------- | --------- | ----------- | ------ | ---------- | ------------ | -------- | ---------- |
-### Task 3: Adding values to the employee and depatment table
-#### Employee Table:
+-----
+
+#### _Task 3: Adding values to the employee and depatment table_
+> #### Employee Table:
 ```sql
 Insert into employee VALUES
 ( 1,'Morrie','Conaboy','CTO',21268.94,'2005-04-30',1,1,NULL),
@@ -77,7 +79,7 @@ Insert into employee VALUES
 (26,'Jessica','Brown','SQL Analyst',8566.00,'2003-10-23',1,1,2);
 ```
 
-#### Department Table:
+> #### Department Table:
 ```sql
 Insert Into department VALUES
 (1,'Analytics','IT'),
@@ -86,7 +88,7 @@ Insert Into department VALUES
 (4,'Website','IT'),
 (5,'Back Office','Administration');
 ```
-Result:
+`Result:`
 | department_id | department | division | 
 | ------------- | ---------- | -------- |
 |             1 | Analytics  | IT       | 
@@ -94,8 +96,9 @@ Result:
 |             3 | Sales      | Sales    | 
 |             4 | Website    | IT       | 
 |             5 | Back Office | Administration | 
+-----
 
-### Task 3: Jack Franklin gets promoted to 'Senior SQL Analyst' and the salary raises to 7200
+#### _Task 3: Jack Franklin gets promoted to 'Senior SQL Analyst' and the salary raises to 7200_
 ```sql
 Update employee 
 SET job_position = 'Senior SQL Analyst'
@@ -107,31 +110,36 @@ Update employee
 SET salary = 7200.00
 WHERE first_name = 'Jack' AND last_name = 'Franklin';
 ```
+-----
 
-### Task 4: The responsible people decided to rename the job_position Customer Support to Customer Specialist
+#### _Task 4: The responsible people decided to rename the job_position Customer Support to Customer Specialist_
 ```sql
 Update employee
 SET job_position = 'Customer Specialist'
 WHERE job_position = 'Customer Support';
 ```
+-----
 
-### Task 5: All SQL Analysts including Senior SQL Analysts get a raise of 6%
+#### _Task 5: All SQL Analysts including Senior SQL Analysts get a raise of 6%_
 ```sql
 UPDATE employee
 SET salary=salary*1.06
 WHERE job_position LIKE '%SQL Analyst';
 ```
+-----
 
-### Task 6: What is the average salary of a SQL Analyst in the company (excluding Senior SQL Analyst)?
+#### _Task 6: What is the average salary of a SQL Analyst in the company (excluding Senior SQL Analyst)?_
 ```sql
 Select ROUND(AVG(salary),2) 
 From employee
 WHERE job_position = 'SQL Analyst';
 ```
-Result:
+`Result:`
 | 8834.75 | 
 | ------- | 
-### Task 7: What is the average salaries per division?
+-----
+
+#### _Task 7: What is the average salaries per division?_
 ```sql
 SELECT 
 division,
@@ -142,14 +150,15 @@ ON e.department_id=d.department_id
 GROUP BY division
 ORDER BY 2 ;
 ```
-Result:
+`Result:`
 | division | round |
 | ------- | ------ | 
 | Sales | 6107.27 |
 | Administration | 6230.88 |
 | IT | 9706.14 |
+-----
 
-### Task 8: Select the following: employee_id, first_name, last_name, job_position, salary and return the average salary for every job_position. Round up the average to 2 decimals and order them by employee_id
+#### _Task 8: Select the following: employee_id, first_name, last_name, job_position, salary and return the average salary for every job_position. Round up the average to 2 decimals and order them by employee_id_
 ```sql
 Select employee_id, 
 first_name, 
@@ -161,15 +170,16 @@ AS ave_salary_position
 From employee
 Order by employee_id;
 ```
-Result:
+`Result:`
 | employee_id | first_name | last_name | job_position | salary | ave_salary_position | 
 | ----------- | ---------- | --------- | ------------ | ------ | ------------------- |
 |           1 | Morrie     | Canoboy   |  CTO         | 21268.94 | 21268.94 | 
 |           2 | Miller     | McQuarter |  Head of BI  | 14614.00 | 14614.00 | 
 |           3 | Christalle | McKenny   | Head of Sales | 12587.00 | 12587.00 | 
 |           4 | Summer     | Seares    |  SQL Analyst | 10085.90 | 8834.75 | 
+-----
 
-### Task 9: How many people are earning less than the Average Salary per Job Position?
+#### _Task 9: How many people are earning less than the Average Salary per Job Position?_
 ```sql
 Select COUNT(*) From ( 
 Select salary, ROUND(AVG(salary) 
@@ -178,6 +188,6 @@ AS ave_salary_position
 From employee)
 Where salary < ave_salary_position ;
 ```
-Result:
+`Result:`
 | 9 | 
 | - |
