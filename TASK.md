@@ -51,7 +51,7 @@ Drop Column birth_date
 > #### Employee Table:
 ```sql
 Insert into employee VALUES
-( 1,'Morrie','Conaboy','CTO',21268.94,'2005-04-30',1,1,NULL),
+( 1,'Morrie','Conaboy','CTO',21268.94,'2005-04-30',1,1,6),
 (2,'Miller','McQuarter','Head of BI',14614.00,'2019-07-23',1,1,1),
 (3,'Christalle','McKenny','Head of Sales',12586.00,'1999-02-05',2,3,1),
 (4,'Summer','Siares','SQL Analyst',9515.00,'2006-05-31',2,1,6),
