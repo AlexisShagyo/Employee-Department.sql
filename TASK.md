@@ -11,8 +11,9 @@ Set up an additional table called departments in the following way:
 | department_id | department | division | 
 | ------------- | ---------- | -------- |
 ---
+<br>
 
-#### _Task 1: Create Tables_
+#### _Task 1: Create Tables for Employee and Department_
 
 > #### Employee Table:
 ```sql
@@ -35,7 +36,9 @@ CREATE TABLE department (
     department CHAR(50),
     division CHAR(50));
 ```
------
+
+<br>
+
 #### _Task 2: Delete the birth_date column from employee table as it won't be needed_
 > #### Employee Table: 
 ```sql
@@ -45,7 +48,7 @@ Drop Column birth_date
 `Result:`
 | employee_id | first_name | last_name | job_position| salary | start_date | store_id | deprtment_id | manager_id | 
 | ----------- | ---------- | --------- | ----------- | ------ | ---------- | ------------ | -------- | ---------- |
------
+<br>
 
 #### _Task 3: Adding values to the employee and depatment table_
 > #### Employee Table:
@@ -96,7 +99,7 @@ Insert Into department VALUES
 |             3 | Sales      | Sales    | 
 |             4 | Website    | IT       | 
 |             5 | Back Office | Administration | 
------
+<br>
 
 #### _Task 3: Jack Franklin gets promoted to 'Senior SQL Analyst' and the salary raises to 7200_
 ```sql
@@ -110,7 +113,7 @@ Update employee
 SET salary = 7200.00
 WHERE first_name = 'Jack' AND last_name = 'Franklin';
 ```
------
+<br>
 
 #### _Task 4: The responsible people decided to rename the job_position Customer Support to Customer Specialist_
 ```sql
@@ -118,7 +121,7 @@ Update employee
 SET job_position = 'Customer Specialist'
 WHERE job_position = 'Customer Support';
 ```
------
+<br>
 
 #### _Task 5: All SQL Analysts including Senior SQL Analysts get a raise of 6%_
 ```sql
@@ -126,7 +129,7 @@ UPDATE employee
 SET salary=salary*1.06
 WHERE job_position LIKE '%SQL Analyst';
 ```
------
+<br>
 
 #### _Task 6: What is the average salary of a SQL Analyst in the company (excluding Senior SQL Analyst)?_
 ```sql
@@ -137,7 +140,7 @@ WHERE job_position = 'SQL Analyst';
 `Result:`
 | 8834.75 | 
 | ------- | 
------
+<br>
 
 #### _Task 7: What is the average salaries per division?_
 ```sql
@@ -156,7 +159,7 @@ ORDER BY 2 ;
 | Sales | 6107.27 |
 | Administration | 6230.88 |
 | IT | 9706.14 |
------
+<br>
 
 #### _Task 8: Select the following: employee_id, first_name, last_name, job_position, salary and return the average salary for every job_position. Round up the average to 2 decimals and order them by employee_id_
 ```sql
@@ -177,7 +180,7 @@ Order by employee_id;
 |           2 | Miller     | McQuarter |  Head of BI  | 14614.00 | 14614.00 | 
 |           3 | Christalle | McKenny   | Head of Sales | 12587.00 | 12587.00 | 
 |           4 | Summer     | Seares    |  SQL Analyst | 10085.90 | 8834.75 | 
------
+<br>
 
 #### _Task 9: How many people are earning less than the Average Salary per Job Position?_
 ```sql
